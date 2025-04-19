@@ -1,0 +1,28 @@
+{
+  "name": "n8n-nodes-mcp",
+  "version": "0.1.0",
+  "description": "Custom n8n nodes for MCP client and server integration",
+  "keywords": [
+    "n8n",
+    "mcp",
+    "workflow",
+    "automation"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "mcp-executor.js",
+    "index.js",
+    "nodes"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint nodes credentials"
+  },
+  "n8n": {
+    "nodes": [
+      "mcp-executor.js"
+    ]
+  }
+}
