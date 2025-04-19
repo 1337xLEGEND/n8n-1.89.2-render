@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    scaling:
+      minInstances: 1
+      maxInstances: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: N8N_PORT
+        value: 5678
+      - key: DATABASE_TYPE
+        value: sqlite
+      - key: DB_SQLITE_PATH
+        value: /home/node/.n8n/database.sqlite
+      - key: WEBHOOK_URL
+        fromService:
+          name: n8n
+          type: web
+          property: url
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 10
