@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  n8n:
+    build: .
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_PROTOCOL=https
+      - N8N_PORT=5678
+      - N8N_ENCRYPTION_KEY=change-me-please  # Change this in production
+      - WEBHOOK_URL=https://your-render-url.onrender.com  # Update with your actual Render URL
+      - DATABASE_TYPE=sqlite
+      - DB_SQLITE_PATH=/home/node/.n8n/database.sqlite
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:
+    driver: local
